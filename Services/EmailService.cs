@@ -1,5 +1,6 @@
-using System.Net;
-using System.Net.Mail;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
 using Microsoft.Extensions.Options;
 using Portfolio_EmailService.Models;
 
@@ -8,40 +9,85 @@ namespace Portfolio_EmailService.Services;
 public class EmailService
 {
     private readonly EmailSettings _emailSettings;
+    private readonly HttpClient _httpClient;
     private readonly ILogger<EmailService> _logger;
 
-    public EmailService(IOptions<EmailSettings> emailOptions, ILogger<EmailService> logger)
+    public EmailService(
+        IOptions<EmailSettings> emailOptions,
+        HttpClient httpClient,
+        ILogger<EmailService> logger)
     {
         _emailSettings = emailOptions.Value;
+        _httpClient = httpClient;
         _logger = logger;
     }
 
     public async Task SendEmailAsync(EmailRequest request)
     {
-        if (string.IsNullOrWhiteSpace(_emailSettings.SenderEmail) ||
-            string.IsNullOrWhiteSpace(_emailSettings.AppPassword))
+        if (string.IsNullOrWhiteSpace(_emailSettings.ApiKey) ||
+            string.IsNullOrWhiteSpace(_emailSettings.FromEmail) ||
+            string.IsNullOrWhiteSpace(_emailSettings.ToEmail))
         {
             throw new InvalidOperationException(
-                "Email settings are missing. Configure EmailSettings:SenderEmail and EmailSettings:AppPassword.");
+                "Email settings are missing. Configure EmailSettings:ApiKey, EmailSettings:FromEmail, and EmailSettings:ToEmail.");
         }
 
-        using var mailMessage = new MailMessage
+        var payload = new
         {
-            From = new MailAddress(_emailSettings.SenderEmail),
-            Subject = $"Portfolio Contact: {request.Subject}",
-            Body = $"Name: {request.Name}\nEmail: {request.Email}\n\nMessage:\n{request.Message}",
-            IsBodyHtml = false
+            from = _emailSettings.FromEmail,
+            to = new[] { _emailSettings.ToEmail },
+            subject = $"Portfolio Contact: {request.Subject}",
+            html = BuildHtmlBody(request),
+            text = BuildTextBody(request)
         };
 
-        mailMessage.To.Add(_emailSettings.SenderEmail);
+        using var httpRequest = new HttpRequestMessage(HttpMethod.Post, "emails");
+        httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _emailSettings.ApiKey);
+        httpRequest.Content = new StringContent(
+            JsonSerializer.Serialize(payload),
+            Encoding.UTF8,
+            "application/json");
 
-        using var smtpClient = new SmtpClient("smtp.gmail.com", 587)
+        _logger.LogInformation("Sending email through Resend for contact request from {Email}", request.Email);
+
+        using var response = await _httpClient.SendAsync(httpRequest);
+        var responseContent = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
         {
-            Credentials = new NetworkCredential(_emailSettings.SenderEmail, _emailSettings.AppPassword),
-            EnableSsl = true
-        };
+            _logger.LogError(
+                "Resend request failed with status {StatusCode}. Response: {Response}",
+                (int)response.StatusCode,
+                responseContent);
 
-        _logger.LogInformation("Attempting SMTP connection to Gmail for sender {SenderEmail}", _emailSettings.SenderEmail);
-        await smtpClient.SendMailAsync(mailMessage);
+            throw new HttpRequestException(
+                $"Resend API request failed with status {(int)response.StatusCode}: {responseContent}",
+                null,
+                response.StatusCode);
+        }
+    }
+
+    private static string BuildTextBody(EmailRequest request)
+    {
+        return
+            $"Name: {request.Name}\n" +
+            $"Email: {request.Email}\n" +
+            $"Subject: {request.Subject}\n\n" +
+            $"Message:\n{request.Message}";
+    }
+
+    private static string BuildHtmlBody(EmailRequest request)
+    {
+        return
+            "<h2>New Portfolio Contact Request</h2>" +
+            $"<p><strong>Name:</strong> {EscapeHtml(request.Name)}</p>" +
+            $"<p><strong>Email:</strong> {EscapeHtml(request.Email)}</p>" +
+            $"<p><strong>Subject:</strong> {EscapeHtml(request.Subject)}</p>" +
+            $"<p><strong>Message:</strong></p><p>{EscapeHtml(request.Message).Replace("\n", "<br />")}</p>";
+    }
+
+    private static string EscapeHtml(string value)
+    {
+        return System.Net.WebUtility.HtmlEncode(value);
     }
 }

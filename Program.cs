@@ -1,4 +1,3 @@
-using System.Net.Mail;
 using Portfolio_EmailService.Models;
 using Portfolio_EmailService.Services;
 using Serilog;
@@ -17,8 +16,9 @@ builder.Services
     .Bind(builder.Configuration.GetSection("EmailSettings"))
     .ValidateDataAnnotations()
     .Validate(
-        settings => !string.IsNullOrWhiteSpace(settings.SenderEmail) &&
-                    !string.IsNullOrWhiteSpace(settings.AppPassword),
+        settings => !string.IsNullOrWhiteSpace(settings.ApiKey) &&
+                    !string.IsNullOrWhiteSpace(settings.FromEmail) &&
+                    !string.IsNullOrWhiteSpace(settings.ToEmail),
         "Email settings must be configured.")
     .ValidateOnStart();
 
@@ -36,7 +36,11 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddScoped<EmailService>();
+builder.Services.AddHttpClient<EmailService>(client =>
+{
+    client.BaseAddress = new Uri("https://api.resend.com/");
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
 
 var app = builder.Build();
 
@@ -66,7 +70,7 @@ app.MapPost("/api/email/send", async (EmailRequest request, EmailService emailSe
     try
     {
         await emailService.SendEmailAsync(request);
-        Log.Information("Email sent successfully to {Email}", request.Email);
+        Log.Information("Email sent successfully for {Email}", request.Email);
 
         return Results.Ok(new { message = "Email sent successfully!" });
     }
@@ -78,11 +82,11 @@ app.MapPost("/api/email/send", async (EmailRequest request, EmailService emailSe
             statusCode: StatusCodes.Status500InternalServerError,
             title: "Email configuration error");
     }
-    catch (SmtpException ex)
+    catch (HttpRequestException ex)
     {
-        Log.Error(ex, "SMTP error while sending email");
+        Log.Error(ex, "Email provider request failed");
         return Results.Problem(
-            detail: app.Environment.IsDevelopment() ? ex.Message : "SMTP connection failed on the server.",
+            detail: app.Environment.IsDevelopment() ? ex.Message : "Email provider request failed.",
             statusCode: StatusCodes.Status502BadGateway,
             title: "Unable to send email");
     }

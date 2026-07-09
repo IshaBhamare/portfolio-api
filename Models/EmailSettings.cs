@@ -5,9 +5,13 @@ namespace Portfolio_EmailService.Models;
 public class EmailSettings
 {
     [Required]
-    [EmailAddress]
-    public string SenderEmail { get; set; } = string.Empty;
+    public string ApiKey { get; set; } = string.Empty;
 
     [Required]
-    public string AppPassword { get; set; } = string.Empty;
+    [EmailAddress]
+    public string FromEmail { get; set; } = string.Empty;
+
+    [Required]
+    [EmailAddress]
+    public string ToEmail { get; set; } = string.Empty;
 }
