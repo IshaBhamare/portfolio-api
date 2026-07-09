@@ -19,10 +19,13 @@ builder.Services.AddSwaggerGen();
 // ✅ CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAngularDev",
-        policy => policy.WithOrigins("https://portfolio-api-dmk8.onrender.com")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod());
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
 });
 
 // ✅ Register Email Service

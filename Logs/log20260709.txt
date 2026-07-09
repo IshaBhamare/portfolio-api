@@ -34,3 +34,17 @@
 2026-07-09 15:47:44.520 +05:30 [INF] Writing value of type '<>f__AnonymousType0`1' as Json.
 2026-07-09 15:47:44.545 +05:30 [INF] Executed endpoint 'HTTP: POST /api/email/send'
 2026-07-09 15:47:44.545 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7198/api/email/send - 200 null application/json; charset=utf-8 10113.501ms
+2026-07-09 19:07:23.457 +05:30 [INF] Now listening on: https://localhost:7198
+2026-07-09 19:07:23.494 +05:30 [INF] Now listening on: http://localhost:5071
+2026-07-09 19:07:23.501 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-09 19:07:23.502 +05:30 [INF] Hosting environment: Development
+2026-07-09 19:07:23.502 +05:30 [INF] Content root path: D:\Project\Portfolio-EmailService
+2026-07-09 19:07:23.855 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/index.html - null null
+2026-07-09 19:07:24.073 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/index.html - 200 null text/html;charset=utf-8 219.2181ms
+2026-07-09 19:07:24.323 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/v1/swagger.json - null null
+2026-07-09 19:07:24.333 +05:30 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-07-09 19:07:24.461 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 138.1437ms
+2026-07-09 19:12:08.180 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7198/api/email/send - null null
+2026-07-09 19:12:08.183 +05:30 [INF] CORS policy execution failed.
+2026-07-09 19:12:08.183 +05:30 [INF] Request origin https://portfolio-angular-taupe-three.vercel.app does not have permission to access the resource.
+2026-07-09 19:12:08.186 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7198/api/email/send - 204 null null 5.9818ms
