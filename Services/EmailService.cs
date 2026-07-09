@@ -1,41 +1,47 @@
-using System;
 using System.Net;
 using System.Net.Mail;
+using Microsoft.Extensions.Options;
 using Portfolio_EmailService.Models;
 
 namespace Portfolio_EmailService.Services;
 
 public class EmailService
 {
-    private readonly IConfiguration _config;
+    private readonly EmailSettings _emailSettings;
+    private readonly ILogger<EmailService> _logger;
 
-    public EmailService(IConfiguration config)
+    public EmailService(IOptions<EmailSettings> emailOptions, ILogger<EmailService> logger)
     {
-        _config = config;
+        _emailSettings = emailOptions.Value;
+        _logger = logger;
     }
 
     public async Task SendEmailAsync(EmailRequest request)
     {
-        var senderEmail = _config["EmailSettings:SenderEmail"];
-        var senderPassword = _config["EmailSettings:AppPassword"];
-
-        var mailMessage = new MailMessage
+        if (string.IsNullOrWhiteSpace(_emailSettings.SenderEmail) ||
+            string.IsNullOrWhiteSpace(_emailSettings.AppPassword))
         {
-            From = new MailAddress(senderEmail),
+            throw new InvalidOperationException(
+                "Email settings are missing. Configure EmailSettings:SenderEmail and EmailSettings:AppPassword.");
+        }
+
+        using var mailMessage = new MailMessage
+        {
+            From = new MailAddress(_emailSettings.SenderEmail),
             Subject = $"Portfolio Contact: {request.Subject}",
             Body = $"Name: {request.Name}\nEmail: {request.Email}\n\nMessage:\n{request.Message}",
-            IsBodyHtml = false,
+            IsBodyHtml = false
         };
 
-        // Send to yourself
-        mailMessage.To.Add(senderEmail);
+        mailMessage.To.Add(_emailSettings.SenderEmail);
 
         using var smtpClient = new SmtpClient("smtp.gmail.com", 587)
         {
-            Credentials = new NetworkCredential(senderEmail, senderPassword),
+            Credentials = new NetworkCredential(_emailSettings.SenderEmail, _emailSettings.AppPassword),
             EnableSsl = true
         };
 
+        _logger.LogInformation("Attempting SMTP connection to Gmail for sender {SenderEmail}", _emailSettings.SenderEmail);
         await smtpClient.SendMailAsync(mailMessage);
     }
 }

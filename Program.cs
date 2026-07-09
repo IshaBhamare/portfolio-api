@@ -1,10 +1,10 @@
+using System.Net.Mail;
 using Portfolio_EmailService.Models;
 using Portfolio_EmailService.Services;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Configure Serilog
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
@@ -12,11 +12,19 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-// ✅ Add services BEFORE build
+builder.Services
+    .AddOptions<EmailSettings>()
+    .Bind(builder.Configuration.GetSection("EmailSettings"))
+    .ValidateDataAnnotations()
+    .Validate(
+        settings => !string.IsNullOrWhiteSpace(settings.SenderEmail) &&
+                    !string.IsNullOrWhiteSpace(settings.AppPassword),
+        "Email settings must be configured.")
+    .ValidateOnStart();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ✅ CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -28,22 +36,20 @@ builder.Services.AddCors(options =>
     });
 });
 
-// ✅ Register Email Service
 builder.Services.AddScoped<EmailService>();
 
 var app = builder.Build();
 
-// ✅ Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 
-// ✅ API endpoint
 app.MapPost("/api/email/send", async (EmailRequest request, EmailService emailService) =>
 {
     Log.Information("Email request received from {Email}", request.Email);
@@ -64,10 +70,29 @@ app.MapPost("/api/email/send", async (EmailRequest request, EmailService emailSe
 
         return Results.Ok(new { message = "Email sent successfully!" });
     }
+    catch (InvalidOperationException ex)
+    {
+        Log.Error(ex, "Email configuration is invalid");
+        return Results.Problem(
+            detail: app.Environment.IsDevelopment() ? ex.Message : "Email service is not configured correctly.",
+            statusCode: StatusCodes.Status500InternalServerError,
+            title: "Email configuration error");
+    }
+    catch (SmtpException ex)
+    {
+        Log.Error(ex, "SMTP error while sending email");
+        return Results.Problem(
+            detail: app.Environment.IsDevelopment() ? ex.Message : "SMTP connection failed on the server.",
+            statusCode: StatusCodes.Status502BadGateway,
+            title: "Unable to send email");
+    }
     catch (Exception ex)
     {
         Log.Error(ex, "Error while sending email");
-        return Results.Problem("Something went wrong");
+        return Results.Problem(
+            detail: app.Environment.IsDevelopment() ? ex.Message : "Unexpected server error while processing email.",
+            statusCode: StatusCodes.Status500InternalServerError,
+            title: "Unexpected error");
     }
 });
 
