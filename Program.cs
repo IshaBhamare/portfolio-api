@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularDev",
-        policy => policy.WithOrigins("http://localhost:4200")
+        policy => policy.WithOrigins("https://portfolio-api-dmk8.onrender.com")
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
