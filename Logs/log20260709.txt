@@ -21,3 +21,16 @@
 2026-07-09 15:46:55.011 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/favicon-32x32.png - null null
 2026-07-09 15:46:55.013 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
 2026-07-09 15:46:55.016 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/favicon-32x32.png - 200 628 image/png 2.8466ms
+2026-07-09 15:46:55.363 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 373.6114ms
+2026-07-09 15:47:34.405 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7198/api/email/send - null null
+2026-07-09 15:47:34.407 +05:30 [INF] CORS policy execution successful.
+2026-07-09 15:47:34.412 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7198/api/email/send - 204 null null 7.626ms
+2026-07-09 15:47:34.432 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7198/api/email/send - application/json 92
+2026-07-09 15:47:34.433 +05:30 [INF] CORS policy execution successful.
+2026-07-09 15:47:34.452 +05:30 [INF] Executing endpoint 'HTTP: POST /api/email/send'
+2026-07-09 15:47:34.507 +05:30 [INF] Email request received from ishabhamare33@gmail.com
+2026-07-09 15:47:44.486 +05:30 [INF] Email sent successfully to ishabhamare33@gmail.com
+2026-07-09 15:47:44.500 +05:30 [INF] Setting HTTP status code 200.
+2026-07-09 15:47:44.520 +05:30 [INF] Writing value of type '<>f__AnonymousType0`1' as Json.
+2026-07-09 15:47:44.545 +05:30 [INF] Executed endpoint 'HTTP: POST /api/email/send'
+2026-07-09 15:47:44.545 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7198/api/email/send - 200 null application/json; charset=utf-8 10113.501ms
