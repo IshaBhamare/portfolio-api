@@ -1,0 +1,80 @@
+2026-04-08 18:02:14.920 +05:30 [INF] Now listening on: https://localhost:7198
+2026-04-08 18:02:15.044 +05:30 [INF] Now listening on: http://localhost:5071
+2026-04-08 18:02:15.047 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-08 18:02:15.047 +05:30 [INF] Hosting environment: Development
+2026-04-08 18:02:15.048 +05:30 [INF] Content root path: D:\Project\Portfolio-EmailService
+2026-04-08 18:02:16.414 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/index.html - null null
+2026-04-08 18:02:16.685 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/index.html - 200 null text/html;charset=utf-8 271.1099ms
+2026-04-08 18:02:16.901 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/v1/swagger.json - null null
+2026-04-08 18:02:16.912 +05:30 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-04-08 18:02:17.029 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 128.1002ms
+2026-04-08 18:02:58.155 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7198/api/email/send - application/json 105
+2026-04-08 18:02:58.164 +05:30 [INF] CORS policy execution failed.
+2026-04-08 18:02:58.164 +05:30 [INF] Request origin https://localhost:7198 does not have permission to access the resource.
+2026-04-08 18:02:58.176 +05:30 [INF] Executing endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:02:58.210 +05:30 [INF] Email request received from rgp3112002@gmail.com
+2026-04-08 18:03:10.183 +05:30 [INF] Email sent successfully to rgp3112002@gmail.com
+2026-04-08 18:03:10.188 +05:30 [INF] Setting HTTP status code 200.
+2026-04-08 18:03:10.461 +05:30 [INF] Writing value of type '<>f__AnonymousType0`1' as Json.
+2026-04-08 18:03:10.477 +05:30 [INF] Executed endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:03:10.477 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7198/api/email/send - 200 null application/json; charset=utf-8 12322.8219ms
+2026-04-08 18:08:15.751 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7198/api/email/send - null null
+2026-04-08 18:08:15.762 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:08:15.763 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7198/api/email/send - 204 null null 12.0681ms
+2026-04-08 18:08:15.961 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7198/api/email/send - application/json 101
+2026-04-08 18:08:15.965 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:08:15.965 +05:30 [INF] Executing endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:08:15.966 +05:30 [INF] Email request received from rgp3112002@gmail.com
+2026-04-08 18:08:20.435 +05:30 [INF] Email sent successfully to rgp3112002@gmail.com
+2026-04-08 18:08:20.435 +05:30 [INF] Setting HTTP status code 200.
+2026-04-08 18:08:20.437 +05:30 [INF] Writing value of type '<>f__AnonymousType0`1' as Json.
+2026-04-08 18:08:20.439 +05:30 [INF] Executed endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:08:20.439 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7198/api/email/send - 200 null application/json; charset=utf-8 4478.1963ms
+2026-04-08 18:17:57.767 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7198/api/email/send - null null
+2026-04-08 18:17:57.768 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:17:57.768 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7198/api/email/send - 204 null null 1.2143ms
+2026-04-08 18:17:57.770 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7198/api/email/send - application/json 103
+2026-04-08 18:17:57.773 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:17:57.774 +05:30 [INF] Executing endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:17:57.775 +05:30 [INF] Email request received from rgp3112002@gmail.com
+2026-04-08 18:18:04.518 +05:30 [INF] Email sent successfully to rgp3112002@gmail.com
+2026-04-08 18:18:04.519 +05:30 [INF] Setting HTTP status code 200.
+2026-04-08 18:18:04.519 +05:30 [INF] Writing value of type '<>f__AnonymousType0`1' as Json.
+2026-04-08 18:18:04.519 +05:30 [INF] Executed endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:18:04.520 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7198/api/email/send - 200 null application/json; charset=utf-8 6749.4818ms
+2026-04-08 18:21:21.719 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7198/api/email/send - null null
+2026-04-08 18:21:21.720 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:21:21.720 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7198/api/email/send - 204 null null 0.5581ms
+2026-04-08 18:21:21.731 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7198/api/email/send - application/json 95
+2026-04-08 18:21:21.731 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:21:21.731 +05:30 [INF] Executing endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:21:21.732 +05:30 [INF] Email request received from rgp3112002@gmail.com
+2026-04-08 18:21:28.312 +05:30 [INF] Email sent successfully to rgp3112002@gmail.com
+2026-04-08 18:21:28.312 +05:30 [INF] Setting HTTP status code 200.
+2026-04-08 18:21:28.312 +05:30 [INF] Writing value of type '<>f__AnonymousType0`1' as Json.
+2026-04-08 18:21:28.313 +05:30 [INF] Executed endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:21:28.313 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7198/api/email/send - 200 null application/json; charset=utf-8 6581.8988ms
+2026-04-08 18:27:16.235 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7198/api/email/send - null null
+2026-04-08 18:27:16.235 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:27:16.235 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7198/api/email/send - 204 null null 1.3301ms
+2026-04-08 18:27:16.237 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7198/api/email/send - application/json 108
+2026-04-08 18:27:16.237 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:27:16.238 +05:30 [INF] Executing endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:27:16.238 +05:30 [INF] Email request received from rgp3112002@gmail.com
+2026-04-08 18:27:20.865 +05:30 [INF] Email sent successfully to rgp3112002@gmail.com
+2026-04-08 18:27:20.865 +05:30 [INF] Setting HTTP status code 200.
+2026-04-08 18:27:20.865 +05:30 [INF] Writing value of type '<>f__AnonymousType0`1' as Json.
+2026-04-08 18:27:20.866 +05:30 [INF] Executed endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:27:20.866 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7198/api/email/send - 200 null application/json; charset=utf-8 4628.5804ms
+2026-04-08 18:31:20.038 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7198/api/email/send - null null
+2026-04-08 18:31:20.039 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:31:20.040 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7198/api/email/send - 204 null null 1.8692ms
+2026-04-08 18:31:20.046 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7198/api/email/send - application/json 95
+2026-04-08 18:31:20.046 +05:30 [INF] CORS policy execution successful.
+2026-04-08 18:31:20.046 +05:30 [INF] Executing endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:31:20.046 +05:30 [INF] Email request received from rgp3112002@gmail.com
+2026-04-08 18:31:26.251 +05:30 [INF] Email sent successfully to rgp3112002@gmail.com
+2026-04-08 18:31:26.251 +05:30 [INF] Setting HTTP status code 200.
+2026-04-08 18:31:26.252 +05:30 [INF] Writing value of type '<>f__AnonymousType0`1' as Json.
+2026-04-08 18:31:26.252 +05:30 [INF] Executed endpoint 'HTTP: POST /api/email/send'
+2026-04-08 18:31:26.252 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7198/api/email/send - 200 null application/json; charset=utf-8 6206.3824ms

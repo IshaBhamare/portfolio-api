@@ -1,0 +1,23 @@
+2026-07-09 15:46:53.941 +05:30 [INF] Now listening on: https://localhost:7198
+2026-07-09 15:46:53.985 +05:30 [INF] Now listening on: http://localhost:5071
+2026-07-09 15:46:53.987 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-09 15:46:53.988 +05:30 [INF] Hosting environment: Development
+2026-07-09 15:46:53.989 +05:30 [INF] Content root path: D:\Project\Portfolio-EmailService
+2026-07-09 15:46:54.349 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger - null null
+2026-07-09 15:46:54.520 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger - 301 0 null 171.2073ms
+2026-07-09 15:46:54.545 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/index.html - null null
+2026-07-09 15:46:54.634 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/index.html - 200 null text/html;charset=utf-8 88.7997ms
+2026-07-09 15:46:54.679 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/swagger-ui.css - null null
+2026-07-09 15:46:54.680 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/swagger-ui-bundle.js - null null
+2026-07-09 15:46:54.682 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/swagger-ui-standalone-preset.js - null null
+2026-07-09 15:46:54.727 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-07-09 15:46:54.727 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/swagger-ui.css - 200 152034 text/css 48.0157ms
+2026-07-09 15:46:54.749 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-07-09 15:46:54.750 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 67.7753ms
+2026-07-09 15:46:54.803 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-07-09 15:46:54.803 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 123.1938ms
+2026-07-09 15:46:54.990 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/v1/swagger.json - null null
+2026-07-09 15:46:55.003 +05:30 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-07-09 15:46:55.011 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7198/swagger/favicon-32x32.png - null null
+2026-07-09 15:46:55.013 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-07-09 15:46:55.016 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7198/swagger/favicon-32x32.png - 200 628 image/png 2.8466ms
