@@ -36,6 +36,7 @@ public class EmailService
         {
             from = _emailSettings.FromEmail,
             to = new[] { _emailSettings.ToEmail },
+            reply_to = request.Email,
             subject = $"Portfolio Contact: {request.Subject}",
             html = BuildHtmlBody(request),
             text = BuildTextBody(request)

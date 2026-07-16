@@ -1,0 +1,38 @@
+2026-07-16 17:14:14.693 +05:30 [ERR] Hosting failed to start
+Microsoft.Extensions.Options.OptionsValidationException: DataAnnotation validation failed for 'EmailSettings' members: 'ApiKey' with the error: 'The ApiKey field is required.'.; DataAnnotation validation failed for 'EmailSettings' members: 'FromEmail' with the error: 'The FromEmail field is required.'.; DataAnnotation validation failed for 'EmailSettings' members: 'ToEmail' with the error: 'The ToEmail field is required.'.; Email settings must be configured.
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.<>c.<Get>b__10_0(String name, IOptionsFactory`1 factory)
+   at Microsoft.Extensions.Options.OptionsCache`1.<>c__DisplayClass3_1`1.<GetOrAdd>b__2()
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.<>c__DisplayClass0_1`1.<ValidateOnStart>b__1()
+   at Microsoft.Extensions.Options.StartupValidator.Validate()
+--- End of stack trace from previous location ---
+   at Microsoft.Extensions.Options.StartupValidator.Validate()
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+2026-07-16 17:36:00.150 +05:30 [INF] Now listening on: http://localhost:5080
+2026-07-16 17:36:00.195 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-16 17:36:00.195 +05:30 [INF] Hosting environment: Development
+2026-07-16 17:36:00.196 +05:30 [INF] Content root path: D:\Project\Portfolio-EmailService
+2026-07-16 17:36:14.287 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5080/api/email/send - application/json 92
+2026-07-16 17:36:14.405 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-07-16 17:36:14.409 +05:30 [INF] Executing endpoint 'HTTP: POST /api/email/send'
+2026-07-16 17:36:14.450 +05:30 [INF] Email request received from ishabhamare33@gmail.com
+2026-07-16 17:36:14.481 +05:30 [INF] Sending email through Resend for contact request from ishabhamare33@gmail.com
+2026-07-16 17:36:14.488 +05:30 [INF] Start processing HTTP request POST https://api.resend.com/emails
+2026-07-16 17:36:14.490 +05:30 [INF] Sending HTTP request POST https://api.resend.com/emails
+2026-07-16 17:36:15.023 +05:30 [INF] Received HTTP response headers after 530.075ms - 401
+2026-07-16 17:36:15.025 +05:30 [INF] End processing HTTP request after 542.062ms - 401
+2026-07-16 17:36:15.027 +05:30 [ERR] Resend request failed with status 401. Response: {"statusCode":401,"name":"validation_error","message":"API key is invalid"}
+2026-07-16 17:36:15.028 +05:30 [ERR] Email provider request failed
+System.Net.Http.HttpRequestException: Resend API request failed with status 401: {"statusCode":401,"name":"validation_error","message":"API key is invalid"}
+   at Portfolio_EmailService.Services.EmailService.SendEmailAsync(EmailRequest request) in D:\Project\Portfolio-EmailService\Services\EmailService.cs:line 64
+   at Program.<>c__DisplayClass0_0.<<<Main>$>b__3>d.MoveNext() in D:\Project\Portfolio-EmailService\Program.cs:line 72
+2026-07-16 17:36:15.053 +05:30 [INF] Setting HTTP status code 502.
+2026-07-16 17:36:15.066 +05:30 [INF] Writing value of type 'ProblemDetails' as Json.
+2026-07-16 17:36:15.084 +05:30 [INF] Executed endpoint 'HTTP: POST /api/email/send'
+2026-07-16 17:36:15.086 +05:30 [ERR] HTTP POST /api/email/send responded 502 in 682.7089 ms
+2026-07-16 17:36:15.089 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5080/api/email/send - 502 null application/problem+json 803.9209ms
